@@ -151,3 +151,25 @@ class CloseApproach:
         """Return `repr(self)`, a computer-readable string representation of this object."""
         return f"CloseApproach(time={self.time_str!r}, distance={self.distance:.2f}, " \
                f"velocity={self.velocity:.2f}, neo={self.neo!r})"
+
+    def formatted_to_csv(self):
+        """
+        Returns the object formatted for csv files
+        """
+        return {'datetime_utc': self.time_str,
+                'distance_au': self.distance,
+                'velocity_km_s': self.velocity,
+                'designation': self.neo.designation,
+                'name': self.neo.name, 'diameter_km': self.neo.diameter,
+                'potentially_hazardous': self.neo.hazardous}
+
+    def formatted_to_json(self):
+        """
+        Returns the object formatted for json files
+        """
+        return {'datetime_utc': self.time_str, 'distance_au': self.distance,
+                'velocity_km_s': self.velocity,
+                'neo': {'designation': self.neo.designation,
+                        'name': self.neo.name,
+                        'diameter_km': self.neo.diameter,
+                        'potentially_hazardous': self.neo.hazardous}}

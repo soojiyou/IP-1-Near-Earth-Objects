@@ -61,7 +61,6 @@ class NearEarthObject:
 
     def __str__(self):
         """Return `str(self)`."""
-
         return f"{self.designation} ({self.name}) has a diameter of {self.diameter} km "\
             f"and {'is' if self.hazardous else 'is not'} potentially hazardous."
 
@@ -117,12 +116,10 @@ class CloseApproach:
         formatted string that can be used in human-readable representations and
         in serialization to CSV and JSON files.
         """
-
         return f"{datetime_to_str(self.time)}"
 
     def __str__(self):
         """Return `str(self)`."""
-
         return f"At {self.time_str}, approaches Earth at a distance of {self.distance} au and a velocity of {self.velocity} km/s."
 
     def __repr__(self):
@@ -131,9 +128,7 @@ class CloseApproach:
                f"velocity={self.velocity:.2f}, neo={self.neo!r})"
 
     def formatted_to_csv(self):
-        """
-        Returns the object formatted for csv files
-        """
+        """Return the object formatted for csv files."""
         return {'datetime_utc': self.time_str,
                 'distance_au': self.distance,
                 'velocity_km_s': self.velocity,
@@ -142,9 +137,7 @@ class CloseApproach:
                 'potentially_hazardous': self.neo.hazardous}
 
     def formatted_to_json(self):
-        """
-        Returns the object formatted for json files
-        """
+        """Return the object formatted for json files."""
         return {'datetime_utc': self.time_str, 'distance_au': self.distance,
                 'velocity_km_s': self.velocity,
                 'neo': {'designation': self.neo.designation,

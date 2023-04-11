@@ -71,41 +71,52 @@ class AttributeFilter:
         raise UnsupportedCriterionError
 
     def __repr__(self):
+        """Repr method used to compare filter attribute."""
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
 
 
 class DateFilter(AttributeFilter):
+    """Subclass of AttributeFilter to filter CloseApproach objects by date."""
+
     @classmethod
     def get(cls, approach):
-        # override get function of superclass
+        """Override get function of superclass."""
         return approach.time.date()
 
 
 class DistanceFilter(AttributeFilter):
+    """Subclass of AttributeFilter to filter approach objects by distance."""
+
     @classmethod
     def get(cls, approach):
-        # override get function of superclass
+        """Override get function of superclass."""
         return approach.distance
 
 
 class VelocityFilter(AttributeFilter):
+    """Subclass of AttributeFilter to filter approach objects by velocity."""
+
     @classmethod
     def get(cls, approach):
-        # override get function of superclass
+        """Override get function of superclass."""
         return approach.velocity
 
 
 class DiameterFilter(AttributeFilter):
+    """Subclass of AttributeFilter to filter approach objects by diameter."""
+
     @classmethod
     def get(cls, approach):
-        # override get function of superclass
+        """Override get function of superclass."""
         return approach.neo.diameter
 
 
 class HarzardousPHAFilter(AttributeFilter):
+    """Subclass to filter CloseApproach objects by if it's hazardous."""
+
     @classmethod
     def get(cls, approach):
-        # override get function of superclass
+        """Override get function of superclass."""
         return approach.neo.hazardous
 
 
@@ -178,11 +189,6 @@ def limit(iterator, n=None):
     :param n: The maximum number of values to produce.
     :yield: The first (at most) `n` values from the iterator.
     """
-    # TODO: Produce at most `n` values from the given iterator.
-    # if n != None or n != 0:
-    #     return itertools.islice(iterator, n)
-
-    # return iterator
     if n not in (None, 0):
         return itertools.islice(iterator, n)
 
